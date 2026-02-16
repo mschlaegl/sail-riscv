@@ -33,6 +33,9 @@ struct CLIOptions {
 #ifdef SAILCOV
   std::string sailcov_file = {};
 #endif
+  uint64_t breakpoint = 0;
+  uint64_t memstart = 0;
+  uint64_t memlen = 0;
 
   bool config_print_instr = false;
   bool config_print_gpr = false;
