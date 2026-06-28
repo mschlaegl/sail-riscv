@@ -27,6 +27,8 @@ struct CLIOptions {
   unsigned rvfi_dii_port = 0;
   std::vector<std::string> elfs;
   uint64_t insn_limit = 0;
+  uint64_t until_pc = 0;
+  bool has_until_pc = false;
 
   std::string sig_file = {};
   unsigned signature_granularity = DEFAULT_SIGNATURE_GRANULARITY;

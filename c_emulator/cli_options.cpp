@@ -57,6 +57,8 @@ CLIOptions parse_cli(int argc, char **argv) {
     ->check(CLI::Range(1, 65535))
     ->option_text("<int> (within [1 - 65535])");
   app.add_option("--inst-limit", opts.insn_limit, "Instruction limit")->option_text("<uint>");
+  auto until_pc_option = app.add_option("--until-pc", opts.until_pc, "Stop execution when PC reaches address")
+                           ->option_text("<address>");
 #ifdef SAILCOV
   app.add_option("--sailcov-file", opts.sailcov_file, "Sail coverage output file")->option_text("<file>");
 #endif
@@ -162,6 +164,9 @@ CLIOptions parse_cli(int argc, char **argv) {
   } catch (const CLI::ParseError &e) {
     exit(app.exit(e));
   }
+
+  /* set has_until_pc true if "--until-pc" was given */
+  opts.has_until_pc = until_pc_option->count() != 0;
 
   return opts;
 }

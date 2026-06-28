@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <map>
+#include <memory>
 #include <optional>
 #include <string>
 #include <unistd.h>
@@ -12,6 +13,7 @@ using std::chrono::steady_clock;
 
 struct CLIOptions;
 class traploop_detector;
+class until_pc_callbacks;
 class ModelImpl;
 
 struct elf_info {
@@ -61,6 +63,7 @@ void run_sail(
   ModelImpl &model,
   const CLIOptions &opts,
   std::shared_ptr<traploop_detector> loop_detector,
+  std::shared_ptr<until_pc_callbacks> until_pc,
   const elf_info &elf_info,
   run_info &run_info
 );
