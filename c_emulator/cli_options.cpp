@@ -147,13 +147,6 @@ CLIOptions parse_cli(int argc, char **argv) {
     "file. This is optional with some arguments, e.g. --print-isa-string."
   );
 
-  app.add_option("--breakpoint", opts.breakpoint, "Breakpoint address")
-    ->option_text("<address>");
-  app.add_option("--memstart", opts.memstart, "Memory start address")
-    ->option_text("<address>");
-  app.add_option("--memlen", opts.memlen, "Memory length")
-    ->option_text("<size>");
-
   std::size_t column_width = 45;
   app.get_formatter()->long_option_alignment_ratio(6.f / static_cast<float>(column_width));
   app.get_formatter()->column_width(column_width);

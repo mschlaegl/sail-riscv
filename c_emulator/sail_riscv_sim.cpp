@@ -2,7 +2,6 @@
 #include "riscv_callbacks_log.h"
 #include "riscv_model_impl.h"
 #include "riscv_sim.h"
-#include "riscv_callbacks_bp.h"
 #include "traploop_detector.h"
 
 #include <iostream>
@@ -27,15 +26,6 @@ void run_model(CLIOptions &opts, ModelImpl &model, uint64_t, const elf_info &elf
     run_info.trace_log
   );
   model.register_callback(log_cbs);
-
-  auto bp_cbs = std::make_shared<bp_callbacks>(
-	opts.breakpoint,
-	opts.memstart,
-	opts.memlen
-  );
-  if (opts.breakpoint != 0) {
-    model.register_callback(bp_cbs);
-  }
 
   do {
     run_sail(model, opts, loop_detector, elf_info, run_info);
